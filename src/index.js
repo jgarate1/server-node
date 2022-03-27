@@ -8,7 +8,11 @@ import logger from './utils/logger'
 import errors from './utils/errors'
 
 import router from './routes'
+
 const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.use(logger.middleware)
 app.use(helmet())
@@ -17,7 +21,10 @@ app.use(
     origin: config.origin,
   }),
 )
+
 app.use(router)
+
 app.use(errors.notFound)
 app.use(errors.errorHandler)
+
 app.listen(config.port)
