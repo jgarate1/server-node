@@ -1,11 +1,12 @@
+/* eslint-disable prettier/prettier */
 import express from 'express'
 
-const app = express()
+import config from './utils/config'
 
-const port = 3000
+const app = express()
 
 app.get('/', (req, res) => {
   res.send({ msg: 'Yo' })
 })
 
-app.listen(port)
+app.listen(config.port)
